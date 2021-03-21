@@ -61,5 +61,48 @@ describe("Posts Controller", () => {
       expect(axios.post.mock.calls).toEqual([]);
       expect(res.sendStatus.mock.calls).toEqual([[500]]);
     });
+    it("Should Return Data", async () => {
+      const posts = [
+        {
+          userId: 1,
+          id: 1,
+          title: "t",
+          body: "b",
+        },
+        {
+          userId: 1,
+          id: 2,
+          title: "t",
+          body: "b",
+        },
+        {
+          userId: 1,
+          id: 3,
+          title: "t",
+          body: "b",
+        },
+        {
+          userId: 1,
+          id: 4,
+          title: "t",
+          body: "b",
+        },
+      ];
+      const axios = {
+        get: jest.fn().mockResolvedValue({ data: posts }),
+      };
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn().mockResolvedValue({ data: posts }),
+      };
+      //console.log(axios.get());
+      await PostsController({ axios }).get({}, res);
+
+      expect(axios.get.mock.calls).toEqual([
+        ["https://jsonplaceholder.typicode.com/posts"],
+      ]);
+      expect(res.status.mock.calls).toEqual([[200]]);
+      expect(res.json.mock.calls).toEqual([[[...posts]]]);
+    });
   });
 });

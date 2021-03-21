@@ -8,4 +8,5 @@ const PostsControllers = PostsController({ axios });
 
 router.use(authenticate);
 router.post("/", PostsControllers.post);
+router.get("/", PostsControllers.get);
 module.exports = router;

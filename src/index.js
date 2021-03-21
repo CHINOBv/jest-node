@@ -16,8 +16,10 @@ app.use(express.json()) */
 app.use(morgan("dev"));
 
 app.use("/users", UsersRoutes);
-app.use(PostsRoutes);
+app.use("/posts", PostsRoutes);
 
-app.listen(port, () => console.log(`Example app listening on port 4000!`));
+app.listen(
+  port /* , () => console.log(`Example app listening on port 4000!`) */
+);
 
 module.exports = app;
