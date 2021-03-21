@@ -6,16 +6,18 @@ const authenticate = require("./middlewares");
 
 const { UsersRoutes, PostsRoutes } = require("./routes");
 
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 //Middlewares
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 /* app.use(express.urlencoded({ extended: false }));
 app.use(express.json()) */
 app.use(morgan("dev"));
 
 app.use("/users", UsersRoutes);
-app.use("/posts", PostsRoutes);
+app.use(PostsRoutes);
 
 app.listen(port, () => console.log(`Example app listening on port 4000!`));
+
+module.exports = app;

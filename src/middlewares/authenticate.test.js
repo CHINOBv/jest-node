@@ -27,6 +27,6 @@ describe("Authenticate Middleware", () => {
 
     expect(req.header.mock.calls).toEqual([["user_id"]]);
 
-    expect(res.sendStatus.mock.calls).toEqual([[403]]);
+    expect(res.sendStatus.mock.calls).toEqual([[400]]);
   });
 });
