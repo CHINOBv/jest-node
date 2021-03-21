@@ -13,6 +13,6 @@ module.exports = ({ axios }) => ({
       req.body
     );
 
-    res.sendStatus(200).json(data);
+    res.status(200).json(data);
   },
 });

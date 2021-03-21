@@ -16,7 +16,7 @@ describe("Posts Controller", () => {
       };
       const res = {
         json: jest.fn().mockResolvedValue({ data: mockUsers }),
-        sendStatus: jest.fn().mockReturnThis(),
+        status: jest.fn().mockReturnThis(),
       };
       const axios = {
         get: jest.fn().mockResolvedValue({ data: mockUsers }),
@@ -32,7 +32,7 @@ describe("Posts Controller", () => {
         ["https://jsonplaceholder.typicode.com/users"],
       ]);
       expect(res.json.mock.calls).toEqual([[{ id: 1000 }]]);
-      expect(res.sendStatus.mock.calls).toEqual([[200]]);
+      expect(res.status.mock.calls).toEqual([[200]]);
     });
 
     it("Shoud Fail And Not Create The Post If ID Does Not Exist", async () => {
